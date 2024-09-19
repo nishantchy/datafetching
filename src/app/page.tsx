@@ -1,4 +1,3 @@
-// src/app/Page.tsx
 import Search from "./components/Search";
 
 export default async function Page() {
@@ -6,7 +5,7 @@ export default async function Page() {
   let posts = await data.json();
 
   return (
-    <div>
+    <div className="bg-gray-200">
       <Search posts={posts} />
     </div>
   );

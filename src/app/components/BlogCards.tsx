@@ -1,27 +1,22 @@
-export default async function BlogCards() {
-  let data = await fetch("https://api.vercel.app/blog");
-  let posts = await data.json();
+export default function BlogCards({ posts }: { posts: any[] }) {
   return (
-    <div className="flex flex-wrap justify-start items-center gap-3 font-semibold max-w-[1240px] w-full mx-auto">
-      {posts.map((post: any) => (
-        <div className="rounded-lg shadow-xl bg-white h-[300px] max-w-[300px] w-full mx-auto p-6 mt-24">
-          <p key={post.id} className="text-3xl">
-            {post.title}
-          </p>
-          <p key={post.id} className="text-xl">
-            {post.content}
-          </p>
-          <p key={post.id} className="text-xl">
-            {post.author}
-          </p>
-          <p key={post.id} className="text-sm">
-            {post.date}
-          </p>
-          <p key={post.id} className="text-sm">
-            {post.category}
-          </p>
-        </div>
-      ))}
+    <div className="flex flex-wrap justify-start items-center gap-3 font-semibold">
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <div
+            key={post.id}
+            className="rounded-lg shadow-xl bg-white h-[300px] max-w-[300px] w-full mx-auto p-6 mt-6"
+          >
+            <p className="text-3xl">{post.title}</p>
+            <p className="text-xl">{post.content}</p>
+            <p className="text-xl">{post.author}</p>
+            <p className="text-sm">{post.date}</p>
+            <p className="text-sm">{post.category}</p>
+          </div>
+        ))
+      ) : (
+        <p>No results found</p>
+      )}
     </div>
   );
 }

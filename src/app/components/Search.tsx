@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import BlogCards from "./BlogCards";
 
 export default function Search({ posts }: { posts: any[] }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,6 +16,7 @@ export default function Search({ posts }: { posts: any[] }) {
         post.content.toLowerCase().includes(term) ||
         post.author.toLowerCase().includes(term)
     );
+
     setFilteredPosts(filtered);
   };
 
@@ -29,25 +31,7 @@ export default function Search({ posts }: { posts: any[] }) {
           className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
-
-      <div className="flex flex-wrap justify-start items-center gap-3 font-semibold">
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => (
-            <div
-              key={post.id}
-              className="rounded-lg shadow-xl bg-white h-[300px] max-w-[300px] w-full mx-auto p-6 mt-6"
-            >
-              <p className="text-3xl">{post.title}</p>
-              <p className="text-xl">{post.content}</p>
-              <p className="text-xl">{post.author}</p>
-              <p className="text-sm">{post.date}</p>
-              <p className="text-sm">{post.category}</p>
-            </div>
-          ))
-        ) : (
-          <p>No results found</p>
-        )}
-      </div>
+      <BlogCards posts={filteredPosts} />
     </div>
   );
 }
