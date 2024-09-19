@@ -5,7 +5,7 @@ export default async function Page() {
   let posts = await data.json();
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 font-poppins min-h-screen">
       <Search posts={posts} />
     </div>
   );
